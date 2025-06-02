@@ -12,21 +12,13 @@ export default function Register() {
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    try {
-      await createUserWithEmailAndPassword(auth, email, senha);
-      const user = auth.currentUser;
-
-      await setDoc(doc(db, "userProfiles", user.uid), {
-        nomeCompleto: "",
-        bioCurta: "",
-        linkPortfolio: ""
-      });
-
-      navigate("/profile");
-    } catch (e) {
-      setErro("Erro ao cadastrar: " + e.message);
-    }
-  };
+  try {
+    await createUserWithEmailAndPassword(auth, email, senha);
+    navigate("/profile");
+  } catch (e) {
+    setErro("Erro ao cadastrar: " + e.message);
+  }
+};
 
   return (
     <div className="form-container">
